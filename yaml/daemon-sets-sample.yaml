@@ -1,0 +1,18 @@
+#DaemonSet — Run Pod on Every Node
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-monitor
+spec:
+  selector:
+    matchLabels:
+      app: monitor
+  template:
+    metadata:
+      labels:
+        app: monitor
+    spec:
+      containers:
+        - name: monitor
+          image: busybox
+          args: ["/bin/sh", "-c", "while true; do echo Node Monitor; sleep 10; done"]

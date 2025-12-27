@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-yaml-manifest
+  name: nginx-yaml-manifest
+spec:
+  containers:
+  - image: nginx
+    name: nginx-yaml-manifest
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

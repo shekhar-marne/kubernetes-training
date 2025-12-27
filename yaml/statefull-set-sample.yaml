@@ -1,0 +1,33 @@
+#volumeClaimTemplates is a template to automatically create PersistentVolumeClaims (PVCs) — one PVC per pod in a StatefulSet.
+# For every pod It will create its own dedicated disk
+# Pod identity + Storage identity
+
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web-ss
+spec:
+  serviceName: web
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

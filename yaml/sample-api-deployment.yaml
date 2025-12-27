@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-api-deployment
+  labels:
+    app: sample-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-api-deployment
+  template:
+    metadata:
+      labels:
+        app: sample-api-deployment
+    spec:
+      containers:
+      - name: sample-api-container
+        image: shekharmarne/sample-api:0.1
+        ports:
+        - containerPort: 8000

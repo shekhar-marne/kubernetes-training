@@ -1,0 +1,13 @@
+# A Headless Service is a Kubernetes Service without a ClusterIP. Headless Service provides stable DNS per pod
+# Stateful applications require stable identity, not load balancing.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  clusterIP: None
+  selector:
+    app: web
+  ports:
+    - port: 80
