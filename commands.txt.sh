@@ -17,6 +17,30 @@ kubectl get pod my-pod
 # To get the logs of a specific pod named "my-pod", use the following command:
 kubectl logs my-pod
 
+# To get the logs of a specific container named "my-container" in the pod "my-pod", use the following command:
+kubectl logs my-pod -c my-container
+
+# To stream the logs of a specific pod named "my-pod", use the following command:
+kubectl logs -f my-pod
+
+# To get the logs of previous instance of a pod named "my-pod", use the following command:
+kubectl logs -p my-pod
+
+# To search for a specific property (e.g., status.phase) of a pod named "my-pod", use the following command:
+kubectl get pod my-pod -o jsonpath='{.status.phase}'
+
+# To get the details of all pods in Kubernetes in form of YAML, use the following command:
+kubectl get pods -o yaml
+
+# To get the details of all pods in Kubernetes in form of JSON, use the following command:
+kubectl get pods -o json
+
+# To get the details of a pod named "my-pod" in Kubernetes in form of JSON, use the following command:
+kubectl get pod my-pod -o json
+
+# To watch the status of pods in real-time, use the following command:
+kubectl get pods -w
+
 # To get the details of the pod "my-pod" in Kubernetes in form of YAML, use the following command:
 kubectl get pod my-pod -o yaml
 
@@ -189,3 +213,62 @@ kubectl describe storageclass standard
 
 # To get the details of the standard storage class in Kubernetes in form of YAML, use the following command:
 kubectl get storageclass standard -o yaml
+
+#############################################
+# Jobs & CronJobs Commands in Kubernetes
+#############################################
+
+# List all jobs in the default namespace
+kubectl get jobs
+
+# Describe a specific job named "my-job"
+kubectl describe job my-job
+
+# To get the details of the job "my-job" in Kubernetes in form of YAML, use the following command:
+kubectl get job my-job -o yaml
+
+# To delete a specific job named "my-job", use the following command:
+kubectl delete job my-job
+
+# To create a job from a YAML file named "job.yaml", use the following command:
+kubectl apply -f job.yaml
+
+# List all cronjobs in the default namespace
+kubectl get cronjobs
+
+# Describe a specific cronjob named "my-cronjob"
+kubectl describe cronjob my-cronjob
+
+# To get the details of the cronjob "my-cronjob" in Kubernetes in form of YAML, use the following command:
+kubectl get cronjob my-cronjob -o yaml
+
+# To delete a specific cronjob named "my-cronjob", use the following command:
+kubectl delete cronjob my-cronjob
+
+# To create a cronjob from a YAML file named "cronjob.yaml", use the following command:
+kubectl apply -f cronjob.yaml
+
+##########################################
+# ConfigMap Commands in Kubernetes
+##########################################
+
+# List all ConfigMaps in the default namespace
+kubectl get configmaps  
+
+# Describe a specific ConfigMap named "my-configmap"
+kubectl describe configmap my-configmap
+
+# To get the details of the ConfigMap "my-configmap" in Kubernetes in form of YAML, use the following command:
+kubectl get configmap my-configmap -o yaml
+
+# To delete a specific ConfigMap named "my-configmap", use the following command:
+kubectl delete configmap my-configmap
+
+# To create a ConfigMap from a YAML file named "configmap.yaml", use the following command:
+kubectl apply -f configmap.yaml
+
+# CLI command to create a ConfigMap named "my-configmap" from a file named "config.txt"
+kubectl create configmap my-configmap --from-file=config.txt
+
+# CLI command to create a ConfigMap named "my-configmap" from literal key-value pairs
+kubectl create configmap app-config --from-literal=APP_ENV=dev --from-literal=LOG_LEVEL=debug
