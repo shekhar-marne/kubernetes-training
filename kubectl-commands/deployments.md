@@ -84,4 +84,53 @@ kubectl rollout pause deployment my-deployment
 kubectl rollout resume deployment my-deployment
 ```
 
+## Create a deployment imperatively
+
+```bash
+kubectl create deployment nginx-deployment --image=nginx --replicas=3
+```
+
+## Scale a deployment to 5 replicas
+
+```bash
+kubectl scale deployment nginx-deployment --replicas=5
+```
+
+## Update the image of a deployment
+
+```bash
+kubectl set image deployment nginx-deployment nginx=nginx:1.20
+```
+
+## Set environment variables for a deployment
+
+```bash
+kubectl set env deployment nginx-deployment APP_ENV=production
+```
+
+## Add labels to a deployment
+
+```bash
+kubectl label deployment nginx-deployment environment=production
+```
+
+## View rollout history
+
+```bash
+kubectl rollout history deployment nginx-deployment
+```
+
+## Roll back to a specific revision
+
+```bash
+kubectl rollout undo deployment nginx-deployment --to-revision=2
+```
+
+## Pause and resume rollout
+
+```bash
+kubectl rollout pause deployment nginx-deployment
+kubectl rollout resume deployment nginx-deployment
+```
+
 [Back to README](../README.md)

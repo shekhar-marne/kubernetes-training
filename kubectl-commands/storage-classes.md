@@ -18,4 +18,28 @@ kubectl describe storageclass standard
 kubectl get storageclass standard -o yaml
 ```
 
+## Create a StorageClass imperatively
+
+```bash
+kubectl create storageclass fast-ssd --provisioner=kubernetes.io/aws-ebs --parameters=type=gp2 --reclaimPolicy=Retain
+```
+
+## Set default StorageClass
+
+```bash
+kubectl patch storageclass fast-ssd -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
+
+## Remove default StorageClass annotation
+
+```bash
+kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":null}}}'
+```
+
+## Describe a StorageClass
+
+```bash
+kubectl describe storageclass fast-ssd
+```
+
 [Back to README](../README.md)

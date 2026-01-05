@@ -66,4 +66,40 @@ kubectl expose pod my-pod --type=NodePort --name=my-service
 kubectl get service my-service -o jsonpath='{.spec.clusterIP}'
 ```
 
+## Create a service imperatively for a deployment
+
+```bash
+kubectl expose deployment my-deployment --type=ClusterIP --port=80 --target-port=8080
+```
+
+## Create a LoadBalancer service
+
+```bash
+kubectl expose deployment my-deployment --type=LoadBalancer --port=80 --target-port=8080
+```
+
+## Create a NodePort service
+
+```bash
+kubectl expose deployment my-deployment --type=NodePort --port=80 --target-port=8080
+```
+
+## Create a service with multiple ports
+
+```bash
+kubectl expose deployment my-deployment --type=ClusterIP --port=80,443 --target-port=8080,8443
+```
+
+## Create a service with session affinity
+
+```bash
+kubectl expose deployment my-deployment --type=ClusterIP --port=80 --target-port=8080 --session-affinity=ClientIP
+```
+
+## Edit a service
+
+```bash
+kubectl edit service my-service
+```
+
 [Back to README](../README.md)

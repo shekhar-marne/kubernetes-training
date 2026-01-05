@@ -42,4 +42,34 @@ kubectl create configmap my-configmap --from-file=config.txt
 kubectl create configmap app-config --from-literal=APP_ENV=dev --from-literal=LOG_LEVEL=debug
 ```
 
+## Create a ConfigMap from multiple files
+
+```bash
+kubectl create configmap my-config --from-file=config1.txt --from-file=config2.txt
+```
+
+## Create a ConfigMap from a directory
+
+```bash
+kubectl create configmap my-config --from-file=./config-dir/
+```
+
+## Create a ConfigMap with binary data
+
+```bash
+kubectl create configmap binary-config --from-file=binary-file.bin
+```
+
+## Update a ConfigMap
+
+```bash
+kubectl create configmap my-config --from-literal=key1=value1 --dry-run=client -o yaml | kubectl apply -f -
+```
+
+## Edit a ConfigMap
+
+```bash
+kubectl edit configmap my-config
+```
+
 [Back to README](../README.md)

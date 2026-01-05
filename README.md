@@ -12,6 +12,9 @@ This repository contains Kubernetes training materials including YAML examples, 
 - [Storage Class Commands](kubectl-commands/storage-classes.md)
 - [Jobs & CronJobs Commands](kubectl-commands/jobs-cronjobs.md)
 - [ConfigMap Commands](kubectl-commands/configmaps.md)
+- [Secret Commands](kubectl-commands/secrets.md)
+- [ServiceAccount Commands](kubectl-commands/serviceaccounts.md)
+- [Taints, Affinity & Anti-affinity Commands](kubectl-commands/taints-affinity.md)
 
 ## Examples
 

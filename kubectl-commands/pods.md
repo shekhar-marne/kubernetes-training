@@ -87,13 +87,43 @@ kubectl get pod my-pod -o yaml
 ## Execute a command inside the pod "my-pod"
 
 ```bash
-kubectl exec -it my-pod -- /bin/bash
+kubectl exec -it my-pod -- sh
 ```
 
 ## Delete a specific pod named "my-pod"
 
 ```bash
 kubectl delete pod my-pod
+```
+
+## Create a pod imperatively with nginx image
+
+```bash
+kubectl run nginx-pod --image=nginx
+```
+
+## Create a pod with specific resource limits
+
+```bash
+kubectl run resource-pod --image=nginx --limits=cpu=100m,memory=128Mi
+```
+
+## Create a pod with environment variables
+
+```bash
+kubectl run env-pod --image=nginx --env=APP_ENV=production --env=LOG_LEVEL=info
+```
+
+## Create a pod with port exposure
+
+```bash
+kubectl run port-pod --image=nginx --port=80
+```
+
+## Create a pod with labels
+
+```bash
+kubectl run labeled-pod --image=nginx --labels=app=myapp,version=v1
 ```
 
 ## Create a pod from a YAML file named "pod.yaml"

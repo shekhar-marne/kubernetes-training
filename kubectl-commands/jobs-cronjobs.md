@@ -60,4 +60,47 @@ kubectl delete cronjob my-cronjob
 kubectl apply -f cronjob.yaml
 ```
 
+## Create a Job imperatively
+
+```bash
+kubectl create job hello-job --image=busybox -- echo "Hello World"
+```
+
+## Create a CronJob imperatively
+
+```bash
+kubectl create cronjob hello-cron --image=busybox --schedule="*/5 * * * *" -- echo "Hello Cron"
+```
+
+## Run a Job manually
+
+```bash
+kubectl create job manual-job --from=cronjob/hello-cron
+```
+
+## Check Job completion
+
+```bash
+kubectl get jobs
+kubectl describe job hello-job
+```
+
+## Delete completed Jobs
+
+```bash
+kubectl delete job hello-job
+```
+
+## Suspend a CronJob
+
+```bash
+kubectl patch cronjob hello-cron -p '{"spec":{"suspend":true}}'
+```
+
+## Resume a CronJob
+
+```bash
+kubectl patch cronjob hello-cron -p '{"spec":{"suspend":false}}'
+```
+
 [Back to README](../README.md)

@@ -272,3 +272,120 @@ kubectl create configmap my-configmap --from-file=config.txt
 
 # CLI command to create a ConfigMap named "my-configmap" from literal key-value pairs
 kubectl create configmap app-config --from-literal=APP_ENV=dev --from-literal=LOG_LEVEL=debug
+
+##########################################
+# Secret Commands in Kubernetes
+##########################################
+
+# List all Secrets in the default namespace
+kubectl get secrets
+
+# Describe a specific Secret named "my-secret"
+kubectl describe secret my-secret
+
+# To get the details of the Secret "my-secret" in Kubernetes in form of YAML, use the following command:
+kubectl get secret my-secret -o yaml
+
+# To delete a specific Secret named "my-secret", use the following command:
+kubectl delete secret my-secret
+
+# To create a Secret from a YAML file named "secret.yaml", use the following command:
+kubectl apply -f secret.yaml
+
+# CLI command to create a Secret named "my-secret" from a file named "secret.txt"
+kubectl create secret generic my-secret --from-file=secret.txt
+
+# CLI command to create a Secret named "my-secret" from literal key-value pairs
+kubectl create secret generic db-secret --from-literal=username=admin --from-literal=password=pass123
+
+###########################################
+# ServiceAccount Commands in Kubernetes
+###########################################
+
+# List all ServiceAccounts in the default namespace
+kubectl get serviceaccounts
+
+# Describe a specific ServiceAccount named "my-serviceaccount"
+kubectl describe serviceaccount my-serviceaccount
+
+# To get the details of the ServiceAccount "my-serviceaccount" in Kubernetes in form of YAML, use the following command:
+kubectl get serviceaccount my-serviceaccount -o yaml
+
+# To delete a specific ServiceAccount named "my-serviceaccount", use the following command:
+kubectl delete serviceaccount my-serviceaccount
+
+# To create a ServiceAccount from a YAML file named "serviceaccount.yaml", use the following command:
+kubectl apply -f serviceaccount.yaml
+
+# CLI command to create a ServiceAccount named "my-serviceaccount"
+kubectl create serviceaccount my-serviceaccount
+
+# To get the tokens associated with a ServiceAccount named "my-serviceaccount", use the following command:
+kubectl get secret -o jsonpath='{.items[?(@.metadata.annotations.kubernetes.io/service-account.name=="my-serviceaccount")].data.token}' | base64 --decode
+
+# To link a ServiceAccount named "my-serviceaccount" to a pod named "my-pod", use the following command:
+kubectl patch pod my-pod -p '{"spec":{"serviceAccountName":"my-serviceaccount"}}'
+
+# To create role binding for a ServiceAccount named "my-serviceaccount" to a role named "my-role" in the default namespace, use the following command:
+kubectl create rolebinding my-rolebinding --role=my-role --serviceaccount=default:my-serviceaccount
+
+# To create role for a ServiceAccount
+kubectl create role my-role --verb=get,list,watch --resource=pods
+
+# To create a role binding for a ServiceAccount and bind a role to it
+kubectl create rolebinding my-rolebinding --role=my-role --serviceaccount=default:my-serviceaccount
+
+##########################################
+# Taint Nodes, Affinity & anti-affinity Commands in Kubernetes
+##########################################
+
+# To taint a node named "my-node" with key "key1", value "value1", and effect "NoSchedule", use the following command:
+kubectl taint nodes my-node key1=value1:NoSchedule
+kubectl run no-toleration-pod --image=nginx
+
+# To remove a taint from a node named "my-node" with key "key1" and effect "NoSchedule", use the following command:
+kubectl taint nodes my-node key1:NoSchedule-
+kubectl taint node minikube dedicated=infra:NoSchedule-
+
+# Patch the pod to add affinity that prefers nodes with label "disktype=ssd", use the following YAML snippet:
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-pod
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: disktype
+            operator: In
+            values: [ssd]
+  containers:
+  - name: nginx
+    image: nginx
+EOF
+
+# Patch the pod to add anti-affinity that avoids nodes with label "disktype=hdd", use the following YAML snippet:
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anti-affinity-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: NotIn
+            values: [hdd]
+  containers:
+  - name: nginx
+    image: nginx
+EOF
+
+##########################################

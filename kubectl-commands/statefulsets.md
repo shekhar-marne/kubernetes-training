@@ -72,4 +72,40 @@ kubectl rollout pause statefulset my-statefulset
 kubectl rollout resume statefulset my-statefulset
 ```
 
+## Create a StatefulSet imperatively
+
+```bash
+kubectl create statefulset mysql --image=mysql:5.7 --replicas=3 --port=3306
+```
+
+## Scale a StatefulSet
+
+```bash
+kubectl scale statefulset mysql --replicas=5
+```
+
+## Update the image of a StatefulSet
+
+```bash
+kubectl set image statefulset mysql mysql=mysql:8.0
+```
+
+## Delete a StatefulSet and its pods
+
+```bash
+kubectl delete statefulset mysql --cascade=true
+```
+
+## View StatefulSet rollout status
+
+```bash
+kubectl rollout status statefulset mysql
+```
+
+## Force delete a StatefulSet pod
+
+```bash
+kubectl delete pod mysql-0 --grace-period=0 --force
+```
+
 [Back to README](../README.md)
