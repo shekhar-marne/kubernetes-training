@@ -1,5 +1,7 @@
 # Taint Nodes, Affinity & Anti-affinity Commands in Kubernetes
 
+[Back to README](../README.md)
+
 ## Taint a node named "my-node" with key "key1", value "value1", and effect "NoSchedule"
 
 ```bash
