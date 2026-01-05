@@ -27,3 +27,18 @@ The `templates/` directory contains template YAML files.
 ## YAML Files
 
 The `yaml/` directory contains additional YAML configurations for deployments, services, and other resources.
+
+## Wiki
+
+The `wiki/` directory contains comprehensive documentation and guides for Kubernetes concepts, troubleshooting, and best practices. Key pages include:
+
+- [Home](wiki/Home.md) - Main wiki page with navigation
+- [Getting Started](wiki/Getting-Started.md) - Setup and first steps
+- [Basic Concepts](wiki/Basic-Concepts.md) - Fundamental Kubernetes concepts
+- [kubectl Commands](wiki/kubectl-Commands.md) - Command reference
+- [Common Issues](wiki/Common-Issues.md) - Troubleshooting guide
+- [Best Practices](wiki/Best-Practices.md) - Recommended practices
+
+### Wiki Setup
+
+To set up the GitHub Wiki for this repository, see [GitHub Wiki Setup](wiki/GitHub-Wiki-Setup.md) for detailed instructions. You can also use the provided `sync-wiki.sh` script to synchronize wiki changes.

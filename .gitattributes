@@ -1,0 +1,30 @@
+# Wiki Directory
+
+This directory contains the GitHub Wiki pages for the Kubernetes Training repository.
+
+## Structure
+
+- `Home.md` - Main wiki home page
+- `_Sidebar.md` - Wiki sidebar navigation
+- Other `.md` files - Individual wiki pages
+
+## Contributing
+
+To contribute to the wiki:
+
+1. Edit the Markdown files in this directory
+2. Commit your changes
+3. Push to the main branch
+4. The wiki will be automatically updated
+
+## Local Development
+
+You can preview the wiki locally using any Markdown viewer or by serving the files with a static site generator.
+
+## Guidelines
+
+- Use clear, descriptive titles
+- Include code examples where appropriate
+- Link to related pages and external resources
+- Keep content up-to-date with Kubernetes best practices</content>
+<parameter name="filePath">/home/shekharm/development/local/kubernetes-training/wiki/README.md
